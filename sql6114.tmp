@@ -1,0 +1,28 @@
+DELIMITER $
+CREATE PROCEDURE example()
+
+BEGIN 
+
+DECLARE idFetch INT(10);
+DECLARE fullNameCur VARCHAR(30);
+DECLARE done BOOLEAN DEFAULT FALSE;
+DECLARE cur_test CURSOR FOR select employeeNumber ,CONCAT(firstname , " " , lastname) as fullname from employees;
+
+DECLARE CONTINUE HANDLER for NOT FOUND SET done = TRUE;
+
+OPEN cur_test;
+my_loop : LOOP
+
+
+IF done THEN
+	leave my_loop;
+END IF;
+fetch cur_test into idFetch , fullNameCur;
+SELECT idFetch , fullNameCur;
+END LOOP;
+
+CLOSE cur_test;
+
+END$
+
+DELIMITER ;
