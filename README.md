@@ -914,3 +914,76 @@ In this example:
 - **Procedural Logic**: They are often used in stored procedures where procedural logic is needed.
 
 ###
+
+### **Triggers in MySQL**
+
+A **trigger** is a set of SQL statements that automatically executes or "fires" in response to certain events on a particular table in a database. Triggers are used to enforce business rules, validate data, maintain audit trails, and synchronize tables.
+
+### **Key Points about Triggers:**
+
+1. **Automatic Execution**: Triggers execute automatically when a specified event occurs (e.g., `INSERT`, `UPDATE`, or `DELETE` operations on a table).
+   
+2. **Event-Based**: Triggers are defined to fire before or after a specific event:
+   - **BEFORE Trigger**: Executes before the triggering event is processed. Commonly used to validate or modify data before it's written to the database.
+   - **AFTER Trigger**: Executes after the triggering event is processed. Often used for logging changes, auditing, or updating related tables.
+
+3. **Attached to a Table**: Triggers are associated with a specific table and defined for specific events on that table.
+
+4. **Cannot be Manually Invoked**: Unlike stored procedures or functions, triggers cannot be called or executed manually. They are automatically executed by the database system in response to the specified events.
+
+5. **Scope of Use**: Typically used for:
+   - **Data Integrity**: Ensuring data consistency and enforcing business rules.
+   - **Auditing**: Tracking changes to data for audit purposes.
+   - **Automation**: Automating repetitive tasks, such as updating related records.
+
+### **Syntax of Triggers in MySQL:**
+
+```sql
+CREATE TRIGGER trigger_name
+{BEFORE | AFTER} {INSERT | UPDATE | DELETE}
+ON table_name
+FOR EACH ROW
+BEGIN
+    -- SQL statements
+END;
+```
+
+### **Example Usage of Triggers:**
+
+1. **Example of an AFTER INSERT Trigger**:
+   
+   ```sql
+   CREATE TRIGGER after_employee_insert
+   AFTER INSERT ON employees
+   FOR EACH ROW
+   BEGIN
+       -- Automatically insert a record into an audit table whenever a new employee is added
+       INSERT INTO audit_log (action, employee_id, action_time)
+       VALUES ('INSERT', NEW.employeeNumber, NOW());
+   END;
+   ```
+   
+   - **Trigger Name**: `after_employee_insert`.
+   - **Trigger Event**: Fires after an `INSERT` operation on the `employees` table.
+   - **Purpose**: Logs the action to an `audit_log` table whenever a new employee is inserted.
+
+2. **Example of a BEFORE UPDATE Trigger**:
+   
+   ```sql
+   CREATE TRIGGER before_employee_update
+   BEFORE UPDATE ON employees
+   FOR EACH ROW
+   BEGIN
+       -- Ensure the salary is not decreased
+       IF NEW.salary < OLD.salary THEN
+           SIGNAL SQLSTATE '45000'
+           SET MESSAGE_TEXT = 'Salary cannot be decreased';
+       END IF;
+   END;
+   ```
+   
+   - **Trigger Name**: `before_employee_update`.
+   - **Trigger Event**: Fires before an `UPDATE` operation on the `employees` table.
+   - **Purpose**: Prevents the salary from being decreased by raising an error.
+
+
