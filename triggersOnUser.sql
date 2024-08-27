@@ -49,10 +49,6 @@ DELIMITER ;
 
 
 
-END $$
-
-DELIMITER ;
-
 	
 
 
