@@ -1,0 +1,155 @@
+```sql
+CREATE TABLE DEPT (
+  DEPTNO INT(2) PRIMARY KEY,
+  DNAME VARCHAR(14),
+  LOC VARCHAR(13)
+);
+
+-- Insert data into DEPT table
+INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (10, 'ACCOUNTING', 'NEW YORK');
+INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (20, 'RESEARCH', 'DALLAS');
+INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (30, 'SALES', 'CHICAGO');
+INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (40, 'OPERATIONS', 'BOSTON');
+INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (50, 'IT', 'HYDERABAD');
+
+-- Verify inserted data
+SELECT * FROM DEPT;
+```
+
+```sql
+-- Create EMP table
+CREATE TABLE EMP (
+  EMPNO INT(4) PRIMARY KEY,
+  ENAME VARCHAR(10),
+  JOB VARCHAR(9),
+  MGR INT(4),
+  HIREDATE DATE,
+  SAL DECIMAL(7,2),
+  DEPTNO INT(2),
+  FOREIGN KEY (DEPTNO) REFERENCES DEPT(DEPTNO)
+);
+
+-- Insert data into EMP table
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO) VALUES (7839, 'KING', 'PRESIDENT', NULL, STR_TO_DATE('17-11-81', '%d-%m-%y'), 5000, 10);
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO) VALUES (7698, 'BLAKE', 'MANAGER', 7839, STR_TO_DATE('01-05-81', '%d-%m-%y'), 2850, 30);
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO) VALUES (7782, 'CLARK', 'MANAGER', 7839, STR_TO_DATE('09-06-81', '%d-%m-%y'), 2450, 10);
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO) VALUES (7566, 'JONES', 'MANAGER', 7839, STR_TO_DATE('02-04-81', '%d-%m-%y'), 2975, 20);
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO) VALUES (7788, 'SCOTT', 'ANALYST', 7566, STR_TO_DATE('19-04-87', '%d-%m-%y'), 3000, 20);
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO) VALUES (7902, 'FORD', 'ANALYST', 7566, STR_TO_DATE('03-12-81', '%d-%m-%y'), 3000, 20);
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO) VALUES (7369, 'SMITH', 'CLERK', 7902, STR_TO_DATE('17-12-80', '%d-%m-%y'), 950, 20);
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO) VALUES (7499, 'ALLEN', 'SALESMAN', 7698, STR_TO_DATE('20-02-81', '%d-%m-%y'), 1600, 30);
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO) VALUES (7521, 'WARD', 'SALESMAN', 7698, STR_TO_DATE('22-02-81', '%d-%m-%y'), 1250, 30);
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO) VALUES (7654, 'MARTIN', 'SALESMAN', 7698, STR_TO_DATE('28-09-81', '%d-%m-%y'), 1250, 30);
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO) VALUES (7844, 'TURNER', 'SALESMAN', 7698, STR_TO_DATE('08-09-81', '%d-%m-%y'), 1500, 30);
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO) VALUES (7876, 'ADAMS', 'CLERK', 7788, STR_TO_DATE('23-05-87', '%d-%m-%y'), 1100, 20);
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO) VALUES (7900, 'JAMES', 'CLERK', 7698, STR_TO_DATE('03-12-81', '%d-%m-%y'), 800, 30);
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO) VALUES (7934, 'MILLER', 'CLERK', 7782, STR_TO_DATE('23-01-82', '%d-%m-%y'), 1300, 40);
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO) VALUES (8001, 'ANABELLE', 'CLERK', 7698, STR_TO_DATE('03-12-81', '%d-%m-%y'), 5500, 20);
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO) VALUES (8002, 'OLIVE', 'CLERK', 7698, STR_TO_DATE('03-12-81', '%d-%m-%y'), 5800, 20);
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO) VALUES (8003, 'OLIVE', 'CLERK', 7698, STR_TO_DATE('03-12-81', '%d-%m-%y'), 5800, 20);
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO) VALUES (8004, 'KINGS', 'CLERK', 7698, STR_TO_DATE('03-12-81', '%d-%m-%y'), 5800, 20);
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO) VALUES (8005, 'KINE', 'CLERK', 7698, STR_TO_DATE('03-12-81', '%d-%m-%y'), 5800, 20);
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO) VALUES (8006, 'KILLEY', 'SALESMAN', 7788, STR_TO_DATE('12-06-90', '%d-%m-%y'), 7500, NULL);
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO) VALUES (8007, 'Jason', 'DEVELOPER', 7788, STR_TO_DATE('12-06-90', '%d-%m-%y'), 7500, NULL);
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO) VALUES (8008, 'BIPLAB', 'CLERK', 7788, STR_TO_DATE('12-07-89', '%d-%m-%y'), 8999, 20);
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO) VALUES (8009, 'BIPLAB', 'SALESMAN', 7698, STR_TO_DATE('12-03-22', '%d-%m-%y'), 9000, 30);
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO) VALUES (8010, 'Jason', 'SALESMAN', 7698, STR_TO_DATE('12-03-22', '%d-%m-%y'), 9000, 30);
+
+--
+
+```
+
+1. **Create a stored procedure named `GetEmployeeDetails`** that takes `emp_id` as an input parameter and returns the employee’s name, department name, salary, and hire date
+
+```sql
+DELIMITER ##
+
+CREATE OR REPLACE PROCEDURE getEmpDetails (IN empNum INT)
+BEGIN 
+  SELECT ENAME, JOB, MGR, HIREDATE, SAL 
+  FROM EMP 
+  WHERE EMPNO = empNum;
+END##
+
+DELIMITER ;
+```
+
+1. **Create a stored procedure named `AddEmployee`** that takes the employee’s name, department ID, salary, and hire date as input parameters and inserts a new employee record into the `employee` table.
+
+```sql
+DELIMITER //
+
+CREATE OR REPLACE PROCEDURE ADDEMP (IN e_name VARCHAR(30), IN JOB varchar(20), IN hireDate DATE , IN SAL INT , IN DEPTNO INT )
+BEGIN
+	Insert into emp(ENAME , JOB , HIREDATE , SAL , DEPTNO ) VALUES (e_name , JOB , HIREDATE , SAL , DEPTNO);
+END //
+
+DELIMITER ;
+```
+
+1. This function takes an employee ID (`emp_id`) as an input parameter and returns the annual salary of the employee after deducting a 10% tax.
+
+```sql
+DELIMITER $$
+
+CREATE OR REPLACE FUNCTION CalculateAnnualSalary(id INT)
+RETURNS DECIMAL(12, 2)
+DETERMINISTIC
+BEGIN
+    DECLARE annual_sal DECIMAL(12, 2);
+    DECLARE deducted_sal DECIMAL(12, 2);
+
+    -- Calculate the annual salary
+    SELECT SAL * 12 INTO annual_sal FROM emp WHERE EMPNO = id;
+
+    -- Deduct 10% tax from the annual salary
+    SET deducted_sal = annual_sal - (annual_sal * 10 / 100);
+
+    RETURN deducted_sal;
+END$$
+
+DELIMITER ;
+
+```
+
+1. This function takes a job title (`role`) as an input parameter and returns the number of employees working in that job field.
+
+```sql
+DELIMITER $$
+
+CREATE OR REPLACE FUNCTION NoEmpDept(role VARCHAR(10))
+RETURNS INT
+DETERMINISTIC
+BEGIN
+    DECLARE emp_count INT DEFAULT 0;
+
+    -- Count the number of employees with the specified job role
+    SELECT COUNT(EMPNO) INTO emp_count FROM emp WHERE JOB = role;
+
+    RETURN emp_count;
+END$$
+
+DELIMITER ;
+
+```
+
+1. This function takes a department ID (`dept_id`) as an input parameter and returns the number of employees in that department.
+
+```sql
+DELIMITER $$
+
+CREATE OR REPLACE FUNCTION GetEmployeeCountByDept(id INT)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+    DECLARE no_emp_dept INT DEFAULT 0;
+
+    -- Count the number of employees in the specified department
+    SELECT COUNT(EMPNO) INTO no_emp_dept FROM emp WHERE DEPTNO = id;
+
+    RETURN no_emp_dept;
+END$$
+
+DELIMITER ;
+
+```
